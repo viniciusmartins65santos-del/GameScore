@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GameScore - Plataforma de Avaliação de Jogos</title>
+
+    <meta name="description"
+        content="GameScore é uma plataforma para avaliação de jogos, permitindo consultar notas e opiniões da comunidade.">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0d0b0c;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        /* MENU */
+
+        header {
+            height: 70px;
+            background-color: #120b0d;
+            border-bottom: 1px solid #32171c;
+
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 0 8%;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .logo span {
+            color: #a71930;
+        }
+
+        nav a {
+            color: #aaa;
+            text-decoration: none;
+            margin-left: 30px;
+            font-size: 14px;
+        }
+
+        nav a:hover {
+            color: #d52a45;
+        }
+
+        /* BANNER */
+
+        .banner {
+            height: 420px;
+            padding: 100px 8%;
+
+            background:
+                linear-gradient(
+                    to right,
+                    #0d0b0c 10%,
+                    rgba(13,11,12,0.85),
+                    rgba(13,11,12,0.2)
+                ),
+                url("https://images.unsplash.com/photo-1511512578047-dfb367046420");
+
+            background-size: cover;
+            background-position: center;
+        }
+
+        .banner h1 {
+            font-size: 55px;
+            margin-bottom: 15px;
+        }
+
+        .banner h1 span {
+            color: #b51d36;
+        }
+
+        .banner p {
+            color: #aaa;
+            width: 500px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .botao {
+            background-color: #9d1930;
+            color: white;
+            text-decoration: none;
+            padding: 13px 22px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .botao:hover {
+            background-color: #c5223e;
+        }
+
+        /* CONTEÚDO */
+
+        .conteudo {
+            width: 84%;
+            margin: auto;
+            padding: 55px 0;
+        }
+
+        .titulo {
+            border-left: 4px solid #a71930;
+            padding-left: 12px;
+            margin-bottom: 30px;
+        }
+
+        .titulo h2 {
+            font-size: 25px;
+        }
+
+        .titulo p {
+            color: #777;
+            margin-top: 5px;
+        }
+
+        /* JOGOS */
+
+        .jogos {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .jogo {
+            background-color: #171214;
+            border: 1px solid #2d1b1f;
+            border-radius: 7px;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+
+        .jogo:hover {
+            transform: translateY(-6px);
+            border-color: #7d1c2d;
+        }
+
+        .capa {
+            height: 280px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .informacao {
+            padding: 15px;
+        }
+
+        .informacao h3 {
+            font-size: 17px;
+            margin-bottom: 7px;
+        }
+
+        .informacao p {
+            color: #777;
+            font-size: 13px;
+        }
+
+        .estrelas {
+            color: #c5223e;
+            margin-top: 12px;
+            letter-spacing: 2px;
+        }
+
+        .nota {
+            float: right;
+            color: white;
+            font-weight: bold;
+        }
+
+        /* SOBRE O PROJETO */
+
+        .sobre {
+            margin-top: 70px;
+            background-color: #151112;
+            border: 1px solid #2b1a1e;
+            padding: 25px;
+            border-radius: 7px;
+        }
+
+        .sobre p {
+            color: #999;
+            line-height: 1.6;
+            margin-top: 10px;
+        }
+
+        .sobre strong {
+            color: #ddd;
+        }
+
+        .sobre em {
+            color: #c5223e;
+        }
+
+        /* CITAÇÃO */
+
+        blockquote {
+            margin-top: 20px;
+            padding: 20px;
+
+            background-color: #151112;
+            border-left: 4px solid #a71930;
+
+            color: #aaa;
+            font-style: italic;
+            line-height: 1.6;
+        }
+
+        /* AVALIAÇÕES */
+
+        .avaliacoes {
+            margin-top: 70px;
+        }
+
+        .avaliacao {
+            background-color: #151112;
+            border: 1px solid #2b1a1e;
+            padding: 20px;
+            margin-bottom: 12px;
+            border-radius: 6px;
+        }
+
+        .avaliacao h3 {
+            color: #ddd;
+            margin-bottom: 8px;
+        }
+
+        .avaliacao p {
+            color: #888;
+            line-height: 1.5;
+        }
+
+        .avaliacao span {
+            color: #c5223e;
+            font-weight: bold;
+        }
+
+        /* RODAPÉ */
+
+        footer {
+            margin-top: 50px;
+            padding: 25px;
+            text-align: center;
+
+            border-top: 1px solid #2b181c;
+
+            color: #666;
+            font-size: 13px;
+        }
+
+        footer p {
+            margin: 5px;
+        }
+
+        /* CELULAR */
+
+        @media (max-width: 800px) {
+
+            nav {
+                display: none;
+            }
+
+            .banner {
+                padding: 80px 8%;
+            }
+
+            .banner h1 {
+                font-size: 40px;
+            }
+
+            .banner p {
+                width: 100%;
+            }
+
+            .jogos {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .capa {
+                height: 230px;
+            }
+
+        }
+
+        @media (max-width: 500px) {
+
+            .jogos {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+
+            .capa {
+                height: 200px;
+            }
+
+            .informacao h3 {
+                font-size: 14px;
+            }
+
+            .banner {
+                height: 380px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- MENU -->
+
+    <header>
+
+        <div class="logo">
+            Game<span>Score</span>
+        </div>
+
+        <nav>
+
+            <a href="#">Início</a>
+
+            <a href="#jogos">Jogos</a>
+
+            <a href="#avaliacoes">Avaliações</a>
+
+            <a href="#">Login</a>
+
+            <a href="#">Cadastrar</a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- BANNER -->
+
+    <section class="banner">
+
+        <h1>
+            GameScore<br>
+            <span>Avalie seus jogos favoritos.</span>
+        </h1>
+
+        <p>
+            Registre os jogos que você jogou, dê sua
+            <strong>nota</strong> e veja o que outros jogadores
+            estão achando.
+            Uma forma <em>simples e organizada</em> de descobrir novos jogos.
+        </p>
+
+        <a href="#jogos" class="botao">
+            Ver jogos
+        </a>
+
+    </section>
+
+
+    <!-- CONTEÚDO -->
+
+    <main class="conteudo">
+
+
+        <!-- JOGOS -->
+
+        <div class="titulo" id="jogos">
+
+            <h2>Jogos populares</h2>
+
+            <p>
+                Os jogos mais avaliados pela comunidade
+            </p>
+
+        </div>
+
+
+        <section class="jogos">
+
+
+            <!-- RED DEAD -->
+
+            <div class="jogo">
+
+                <div
+                    class="capa"
+                    style="background-image:
+                    url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXoXooFj2bU7NhKPJXPhHBc1PBhCyYt7oLJ83C55ZPyyNrl1yAAyZM3Osr7waHAgGTrnSi&s=10')">
+                </div>
+
+                <div class="informacao">
+
+                    <h3>
+                        Red Dead Redemption 2
+                    </h3>
+
+                    <p>
+                        2018 • Ação / Aventura
+                    </p>
+
+                    <div class="estrelas">
+
+                        ★★★★★
+
+                        <span class="nota">
+                            9.7
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- THE WITCHER -->
+
+            <div class="jogo">
+
+                <div
+                    class="capa"
+                    style="background-image:
+                    url('https://img.odcdn.com.br/wp-content/uploads/2024/10/imagem_2024-10-17_174352933-1920x1080.png')">
+                </div>
+
+                <div class="informacao">
+
+                    <h3>
+                        The Witcher 3
+                    </h3>
+
+                    <p>
+                        2015 • RPG
+                    </p>
+
+                    <div class="estrelas">
+
+                        ★★★★★
+
+                        <span class="nota">
+                            9.5
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- FNAF -->
+
+            <div class="jogo">
+
+                <div
+                    class="capa"
+                    style="background-image:
+                    url('https://image.api.playstation.com/gs2-sec/appkgo/prod/CUSA18364_00/2/i_c59da73a0d4ce6e894622a5b396627a0133e521d01376d05f978c4d036fc4d16/i/pic0.png')">
+                </div>
+
+                <div class="informacao">
+
+                    <h3>
+                        Five Nights at Freddy's 2
+                    </h3>
+
+                    <p>
+                        2014 • Terror
+                    </p>
+
+                    <div class="estrelas">
+
+                        ★★★★★
+
+                        <span class="nota">
+                            9.3
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- CYBERPUNK -->
+
+            <div class="jogo">
+
+                <div
+                    class="capa"
+                    style="background-image:
+                    url('https://cdn1.epicgames.com/offer/77f2b98e2cef40c8a7437518bf420e47/EGS_Cyberpunk2077_CDPROJEKTRED_S1_03_2560x1440-359e77d3cd0a40aebf3bbc130d14c5c7')">
+                </div>
+
+                <div class="informacao">
+
+                    <h3>
+                        Cyberpunk 2077
+                    </h3>
+
+                    <p>
+                        2020 • RPG
+                    </p>
+
+                    <div class="estrelas">
+
+                        ★★★★☆
+
+                        <span class="nota">
+                            9.1
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- SOBRE O PROJETO -->
+
+        <section class="sobre">
+
+            <div class="titulo">
+
+                <h2>Sobre o projeto</h2>
+
+                <p>
+                    Conheça a proposta do GameScore
+                </p>
+
+            </div>
+
+            <p>
+                O <strong>GameScore</strong> é uma plataforma voltada
+                para jogadores que desejam registrar, avaliar e conhecer
+                novos jogos.
+            </p>
+
+            <p>
+                O projeto busca reunir informações e avaliações da
+                comunidade em um único lugar, tornando a experiência
+                de escolha de jogos mais <em>prática e acessível</em>.
+            </p>
+
+        </section>
+
+
+        <!-- CITAÇÃO -->
+
+        <section>
+
+            <div class="titulo">
+
+                <h2>Citação</h2>
+
+                <p>
+                    Uma reflexão relacionada ao projeto
+                </p>
+
+            </div>
+
+            <blockquote>
+                "Os jogos digitais podem proporcionar experiências,
+                entretenimento e interação entre pessoas."
+            </blockquote>
+
+        </section>
+
+
+        <!-- AVALIAÇÕES -->
+
+        <section class="avaliacoes" id="avaliacoes">
+
+            <div class="titulo">
+
+                <h2>Últimas avaliações</h2>
+
+                <p>
+                    O que os jogadores estão dizendo
+                </p>
+
+            </div>
+
+
+            <div class="avaliacao">
+
+                <h3>
+                    Lucas avaliou Red Dead Redemption 2
+
+                    <span>
+                        ★★★★★
+                    </span>
+                </h3>
+
+                <p>
+                    "O jogo tem uma história muito boa e o mundo
+                    aberto é um dos melhores que já joguei."
+                </p>
+
+            </div>
+
+
+            <div class="avaliacao">
+
+                <h3>
+                    Pedro avaliou The Witcher 3
+
+                    <span>
+                        ★★★★★
+                    </span>
+                </h3>
+
+                <p>
+                    "Tem muita coisa para fazer e as missões
+                    secundárias são melhores que muitos jogos inteiros."
+                </p>
+
+            </div>
+
+
+            <div class="avaliacao">
+
+                <h3>
+                    Ana avaliou Five Nights at Freddy's 2
+
+                    <span>
+                        ★★★★☆
+                    </span>
+                </h3>
+
+                <p>
+                    "O jogo é muito assustador e a atmosfera
+                    é perfeita para o gênero."
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- IDENTIFICAÇÃO DO GRUPO -->
+
+        <section class="sobre">
+
+            <div class="titulo">
+
+                <h2>Identificação do grupo</h2>
+
+            </div>
+
+            <p>
+                <strong>Nome do grupo:</strong>
+                GameScore
+            </p>
+
+            <p>
+                <strong>Integrantes:</strong>
+                Henrique de Souza Sampaio - RA 26010402
+            </p>
+
+            <p>
+                <strong>Integrantes:</strong>
+                Márcio Rosati Bariotto Filho - RA 26007147
+            </p>
+            <p>
+                <strong>Integrantes:</strong>
+                Vinícius Mendes dos Santos Martins - RA 26008770
+            </p>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- RODAPÉ -->
+
+    <footer>
+
+        <p>
+            GameScore © 2026 - Todos os direitos reservados
+        </p>
+
+    </footer>
+
+
+</body>
+
+</html>
