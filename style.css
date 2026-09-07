@@ -1,0 +1,300 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #0d0b0c;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+/* MENU */
+
+header {
+    height: 70px;
+    background-color: #120b0d;
+    border-bottom: 1px solid #32171c;
+
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 0 8%;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+    color: white;
+}
+
+.logo span {
+    color: #a71930;
+}
+
+nav a {
+    color: #aaa;
+    text-decoration: none;
+    margin-left: 30px;
+    font-size: 14px;
+}
+
+nav a:hover {
+    color: #d52a45;
+}
+
+/* BANNER */
+
+.banner {
+    height: 420px;
+    padding: 100px 8%;
+
+    background:
+        linear-gradient(
+            to right,
+            #0d0b0c 10%,
+            rgba(13,11,12,0.85),
+            rgba(13,11,12,0.2)
+        ),
+        url("https://images.unsplash.com/photo-1511512578047-dfb367046420");
+
+    background-size: cover;
+    background-position: center;
+}
+
+.banner h1 {
+    font-size: 55px;
+    margin-bottom: 15px;
+}
+
+.banner h1 span {
+    color: #b51d36;
+}
+
+.banner p {
+    color: #aaa;
+    width: 500px;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.botao {
+    background-color: #9d1930;
+    color: white;
+    text-decoration: none;
+    padding: 13px 22px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.botao:hover {
+    background-color: #c5223e;
+}
+
+/* CONTEÚDO */
+
+.conteudo {
+    width: 84%;
+    margin: auto;
+    padding: 55px 0;
+}
+
+.titulo {
+    border-left: 4px solid #a71930;
+    padding-left: 12px;
+    margin-bottom: 30px;
+}
+
+.titulo h2 {
+    font-size: 25px;
+}
+
+.titulo p {
+    color: #777;
+    margin-top: 5px;
+}
+
+/* JOGOS */
+
+.jogos {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.jogo {
+    background-color: #171214;
+    border: 1px solid #2d1b1f;
+    border-radius: 7px;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+.jogo:hover {
+    transform: translateY(-6px);
+    border-color: #7d1c2d;
+}
+
+.capa {
+    height: 280px;
+    background-size: cover;
+    background-position: center;
+}
+
+.informacao {
+    padding: 15px;
+}
+
+.informacao h3 {
+    font-size: 17px;
+    margin-bottom: 7px;
+}
+
+.informacao p {
+    color: #777;
+    font-size: 13px;
+}
+
+.estrelas {
+    color: #c5223e;
+    margin-top: 12px;
+    letter-spacing: 2px;
+}
+
+.nota {
+    float: right;
+    color: white;
+    font-weight: bold;
+}
+
+/* SOBRE O PROJETO */
+
+.sobre {
+    margin-top: 70px;
+    background-color: #151112;
+    border: 1px solid #2b1a1e;
+    padding: 25px;
+    border-radius: 7px;
+}
+
+.sobre p {
+    color: #999;
+    line-height: 1.6;
+    margin-top: 10px;
+}
+
+.sobre strong {
+    color: #ddd;
+}
+
+.sobre em {
+    color: #c5223e;
+}
+
+/* CITAÇÃO */
+
+blockquote {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #151112;
+    border-left: 4px solid #a71930;
+    color: #aaa;
+    font-style: italic;
+    line-height: 1.6;
+}
+
+/* AVALIAÇÕES */
+
+.avaliacoes {
+    margin-top: 70px;
+}
+
+.avaliacao {
+    background-color: #151112;
+    border: 1px solid #2b1a1e;
+    padding: 20px;
+    margin-bottom: 12px;
+    border-radius: 6px;
+}
+
+.avaliacao h3 {
+    color: #ddd;
+    margin-bottom: 8px;
+}
+
+.avaliacao p {
+    color: #888;
+    line-height: 1.5;
+}
+
+.avaliacao span {
+    color: #c5223e;
+    font-weight: bold;
+}
+
+/* RODAPÉ */
+
+footer {
+    margin-top: 50px;
+    padding: 25px;
+    text-align: center;
+    border-top: 1px solid #2b181c;
+    color: #666;
+    font-size: 13px;
+}
+
+footer p {
+    margin: 5px;
+}
+
+/* CELULAR */
+
+@media (max-width: 800px) {
+
+    nav {
+        display: none;
+    }
+
+    .banner {
+        padding: 80px 8%;
+    }
+
+    .banner h1 {
+        font-size: 40px;
+    }
+
+    .banner p {
+        width: 100%;
+    }
+
+    .jogos {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .capa {
+        height: 230px;
+    }
+}
+
+@media (max-width: 500px) {
+
+    .jogos {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .capa {
+        height: 200px;
+    }
+
+    .informacao h3 {
+        font-size: 14px;
+    }
+
+    .banner {
+        height: 380px;
+    }
+}
